@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+int p;
+int fun(int* Arr, int n, int nn, int otv)
+{
+	if (nn <= n) 
+	{ 
+		if (Arr[nn]>p)
+		{ 
+			otv = Arr[nn];
+			p = Arr[nn];
+		} 
+		nn = nn + 1; fun(Arr, n, nn, otv); 
+	}
+	else { return otv; }
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int* Arr;
+	int num, a, b, n, otvet = 0;
+	cout << "Введите a "; cin >> a;
+	cout << "Введите b>=a "; cin >> b;
+	cout << "Введите n "; cin >> n;
+	Arr = new int[n]; // динамический массив
+	for (int i = 0; i < n; i++)
+	{
+		num = rand() % (b - a + 1) + a;
+		Arr[i] = num;
+	}
+	for (int i = 0; i < n; i++) { cout << Arr[i] << " "; }
+	cout << endl;
+	p = Arr[0];
+	otvet = fun(Arr, n - 1, 0, 1);
+	cout << "otvet = " << otvet;
+
+}

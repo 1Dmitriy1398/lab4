@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+int get_count(int);
+
+int main(int argc, char* argv[])
+{
+    int number = 0;
+
+    cin >> number;
+    cout << get_count(number) << endl;
+
+    return 0;
+}
+
+int get_count(int number)
+{
+    if (number / 10)
+        return get_count(number / 10) + 1;
+    else
+        return 0;
+}
