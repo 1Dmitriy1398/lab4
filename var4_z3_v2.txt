@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+int fung(int* Arrf, int* Arrg, int nn);
+int funf(int* Arrf, int* Arrg, int nn);
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int* Arrf;
+	int* Arrg;
+	int  n; bool prov = true;
+	while (prov)
+	{
+		cout << "n = "; cin >> n;
+		if (n >= 2) { prov = false; }
+		else { cout << "введите n >= 2" << endl; }
+	}
+	Arrf = new int[n]; // динамический массив
+	Arrg = new int[n]; // динамический массив
+
+	cout << "f(1) = "; cin >> Arrf[0];
+	cout << "g(1) = "; cin >> Arrg[0];
+	cout << endl << "---------------------------" << endl << endl;
+	fung(Arrf, Arrg, n);
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "f(" << i+1 << ") = " << Arrf[i] << endl;
+		cout << "g(" << i+1  << ") = " << Arrg[i] << endl;
+	}
+
+
+}
+
+
+int fung(int* Arrf, int* Arrg, int ng)
+{
+
+	if (ng > 0) { Arrg[ng] = funf(Arrf, Arrg, ng - 1) - fung(Arrf, Arrg, ng - 1); return Arrg[ng]; }
+	else { return Arrg[0]; }
+
+
+}
+
+
+int funf(int* Arrf, int* Arrg, int nf)
+{
+
+
+	if (nf > 0) { Arrf[nf] = funf(Arrf, Arrg, nf - 1) -2* fung(Arrf, Arrg, nf - 1); return Arrf[nf]; }
+	else { return Arrf[0]; }
+
+
+}
